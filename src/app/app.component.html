@@ -6,8 +6,41 @@
           <div class="card-header">Students mangment</div>
           <div class="card-body">
             <div class="row">
-              <div class="col-lg-6">options</div>
-              <div class="col-lg-6">list</div>
+              <div class="col-12">
+                <div class="float-right">view icons</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="row">
+                  <div class="col-lg-6">Choose Year</div>
+                  <div class="col-lg-6">Choose Class</div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th scope="col">Name</th>
+                      <th scope="col">S.Name</th>
+                      <th scope="col">Score</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let student of students; index as i">
+                      <td>
+                        {{ student.fname }}
+                      </td>
+                      <td>
+                        {{ student.lname }}
+                      </td>
+                      <td>
+                        {{ student.grade }}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
@@ -18,7 +51,29 @@
         <div class="card">
           <div class="card-body">
             <div class="row">
-              <div class="col-lg-12">details</div>
+              <div class="col-2">photo</div>
+              <div class="col-3">
+                Name: <b>{{ selectedStudent.fname }}</b>
+                <br />
+                S.Name: <b>{{ selectedStudent.lname }}</b>
+              </div>
+              <div class="col-2">
+                Class: <b>Biology</b>
+                <br />
+                Year: <b>{{ selectedStudent.year }}</b>
+              </div>
+              <div class="col-5">
+                Score: <b>{{ selectedStudent.grade }}</b>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12">editor</div>
+              <div class="col-12">
+                <div class="float-right">
+                  <button>Submit</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>

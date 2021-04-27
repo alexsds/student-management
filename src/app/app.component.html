@@ -13,8 +13,20 @@
             <div class="row">
               <div class="col-lg-6">
                 <div class="row">
-                  <div class="col-lg-6">Choose Year</div>
-                  <div class="col-lg-6">Choose Class</div>
+                  <div class="col-lg-6">
+                    <ng-select placeholder="Choose Year">
+                      <ng-option *ngFor="let year of years" [value]="year">
+                        {{ year }}
+                      </ng-option>
+                    </ng-select>
+                  </div>
+                  <div class="col-lg-6">
+                    <ng-select placeholder="Choose Class">
+                      <ng-option *ngFor="let className of classes" [value]="className">
+                        {{ className }}
+                      </ng-option>
+                    </ng-select>
+                  </div>
                 </div>
               </div>
               <div class="col-lg-6">

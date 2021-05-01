@@ -12,6 +12,7 @@ import * as fromApp from '../../store/app.reducer';
 export class StudentCardComponent implements OnInit {
   @Input() student: Student | undefined = undefined;
   @Input() selected: Student | undefined | null = undefined;
+  @Input() useHighlight = true;
 
   constructor(private store: Store<fromApp.State>) {}
 

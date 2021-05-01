@@ -1,7 +1,7 @@
 <div
   *ngIf="student"
-  [class.danger]="student.grade < 45"
-  [class.selected]="selected === student"
+  [class.danger]="useHighlight && student.grade < 45"
+  [class.selected]="useHighlight && selected === student"
   (click)="onSelectStudent(student)"
   class="card"
 >

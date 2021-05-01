@@ -51,19 +51,8 @@
         <div class="card">
           <div class="card-body">
             <div class="row">
-              <div class="col-2">photo</div>
-              <div class="col-3">
-                Name: <b>{{ selectedStudent.fname }}</b>
-                <br />
-                S.Name: <b>{{ selectedStudent.lname }}</b>
-              </div>
-              <div class="col-2">
-                Class: <b>Biology</b>
-                <br />
-                Year: <b>{{ selectedStudent.year }}</b>
-              </div>
-              <div class="col-5">
-                Score: <b>{{ selectedStudent.grade }}</b>
+              <div class="col-12">
+                <app-student-card [student]="selectedStudent"></app-student-card>
               </div>
             </div>
 

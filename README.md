@@ -2,6 +2,17 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.10.
 
+# Demo
+
+https://student-management-sample.web.app/
+
+# Third party libraries
+[bootstrap](https://www.npmjs.com/package/bootstrap)
+
+[@ng-select/ng-select](https://www.npmjs.com/package/@ng-select/ng-select)
+
+[ngx-quill](https://www.npmjs.com/package/ngx-quill)
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

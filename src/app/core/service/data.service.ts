@@ -14,16 +14,16 @@ interface Data {
 }
 
 @Injectable()
-export class StudentsService {
+export class DataService {
   private data: Data;
 
   constructor() {
     this.data = getData();
   }
 
-  years(selectedClassType?: string): Observable<Set<number>> {
+  getYears(selectedClassType?: string): Observable<Set<number>> {
     const years: number[] = [];
-    this.data.classStudents.map((item) => {
+    this.data.classStudents.forEach((item) => {
       if (selectedClassType && selectedClassType !== item.classType) {
         return;
       }
@@ -38,9 +38,9 @@ export class StudentsService {
     return of(new Set<number>(years));
   }
 
-  classTypes(selectedYear?: number): Observable<Set<string>> {
+  getClassTypes(selectedYear?: number): Observable<Set<string>> {
     const classTypes: string[] = [];
-    this.data.classStudents.map((item) => {
+    this.data.classStudents.forEach((item) => {
       if (selectedYear) {
         const students = item.students.find((student) => {
           return student.year === selectedYear;
@@ -58,9 +58,9 @@ export class StudentsService {
     return of(new Set<string>(classTypes));
   }
 
-  get(request?: GetStudentsRequest): Observable<Student[]> {
+  getStudents(request?: GetStudentsRequest): Observable<Student[]> {
     const students: Student[] = [];
-    this.data.classStudents.map((item) => {
+    this.data.classStudents.forEach((item) => {
       if (request?.classType) {
         if (item.classType !== request.classType) {
           return;
@@ -79,6 +79,20 @@ export class StudentsService {
     });
 
     return of(students);
+  }
+
+  updateStudentGrade(student: Student, grade: number): Observable<Student> {
+    const updatedStudent = {...student};
+    updatedStudent.grade = Number(grade);
+    this.data.classStudents.map((item) => {
+      const foundIndex = item.students.indexOf(student);
+      if (foundIndex !== -1) {
+        item.students[foundIndex] = updatedStudent;
+        return;
+      }
+    });
+
+    return of(updatedStudent);
   }
 }
 

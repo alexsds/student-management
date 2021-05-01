@@ -27,6 +27,10 @@ export const SELECT_GRID_VIEW = '[Students] Select Grid View';
 
 export const SUBMIT_FORM = '[Students] Submit Form';
 
+export const UPDATE_GRADE = '[Students] Update Grade';
+export const UPDATE_GRADE_SUCCESS = '[Students] Update Grade Success';
+export const UPDATE_GRADE_FAIL = '[Students] Update Grade Fail';
+
 export class FetchData implements Action {
   readonly type = FETCH_DATA;
 }
@@ -111,6 +115,22 @@ export class SubmitForm implements Action {
   readonly type = SUBMIT_FORM;
 }
 
+export class UpdateGrade implements Action {
+  readonly type = UPDATE_GRADE;
+
+  constructor(public payload: {student: Student; grade: number}) {}
+}
+
+export class UpdateGradeSuccess implements Action {
+  readonly type = UPDATE_GRADE_SUCCESS;
+
+  constructor(public payload: {student: Student}) {}
+}
+
+export class UpdateGradeFail implements Action {
+  readonly type = UPDATE_GRADE_FAIL;
+}
+
 export type StudentsActions =
   | FetchData
   | FetchDataSuccess
@@ -128,4 +148,7 @@ export type StudentsActions =
   | FetchStudentsFail
   | SelectStudent
   | SelectGridView
-  | SubmitForm;
+  | SubmitForm
+  | UpdateGrade
+  | UpdateGradeSuccess
+  | UpdateGradeFail;

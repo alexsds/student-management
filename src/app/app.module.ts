@@ -13,9 +13,10 @@ import * as fromApp from './store/app.reducer';
 import {StudentGridComponent} from './components/student-grid/student-grid.component';
 import {StudentCardComponent} from './components/student-card/student-card.component';
 import {GridViewComponent} from './components/grid-view/grid-view.component';
+import {StudentDetailsComponent} from './components/student-details/student-details.component';
 
 @NgModule({
-  declarations: [AppComponent, StudentGridComponent, StudentCardComponent, GridViewComponent],
+  declarations: [AppComponent, StudentGridComponent, StudentCardComponent, GridViewComponent, StudentDetailsComponent],
   imports: [
     BrowserModule,
     NgSelectModule,

@@ -25,6 +25,8 @@ export const SELECT_STUDENT = '[Students] Select Student';
 
 export const SELECT_GRID_VIEW = '[Students] Select Grid View';
 
+export const SUBMIT_FORM = '[Students] Submit Form';
+
 export class FetchData implements Action {
   readonly type = FETCH_DATA;
 }
@@ -105,6 +107,10 @@ export class SelectGridView implements Action {
   constructor(public payload: {gridView: GridView}) {}
 }
 
+export class SubmitForm implements Action {
+  readonly type = SUBMIT_FORM;
+}
+
 export type StudentsActions =
   | FetchData
   | FetchDataSuccess
@@ -121,4 +127,5 @@ export type StudentsActions =
   | FetchStudentsSuccess
   | FetchStudentsFail
   | SelectStudent
-  | SelectGridView;
+  | SelectGridView
+  | SubmitForm;

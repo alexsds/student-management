@@ -1,23 +1,40 @@
-import {Component} from '@angular/core';
+import {Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
 import {Student} from './core/model/student';
+import {Store} from '@ngrx/store';
+import * as fromApp from './store/app.reducer';
+import * as StudentsActions from './store/students/students.actions';
+import {isPlatformBrowser} from '@angular/common';
+import {getClasses, getStudents, getYears} from './store/students/students.selectors';
+import {Observable} from 'rxjs';
+import {delay, take, tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'students-managment';
 
-  studentsData =
-    ' [{ "fname": "Tevon", "lname": "Barens", "grade": 43.0, "year": 1980 }, { "fname": "Josef", "lname": "Cohen", "grade": 60.0, "year": 1980 }, { "fname": "Nati", "lname": "Green", "grade": 99.0, "year": 2001 }, { "fname": "Shakil", "lname": "Jareh", "grade": 88.0, "year": 2001}]';
-  students: Student[];
-  selectedStudent: Student;
-  years = [1940, 2012, 1960, 2009, 1980];
-  classes = ['Biology', 'Chemistry', 'ComputerScience'];
+  years$: Observable<Set<number>>;
+  classes$: Observable<Set<string>>;
+  students$: Observable<Student[]>;
+  selectedStudent!: Student;
 
-  constructor() {
-    this.students = JSON.parse(this.studentsData);
-    this.selectedStudent = this.students[0];
+  constructor(private store: Store<fromApp.State>, @Inject(PLATFORM_ID) private platformId: object) {
+    this.years$ = this.store.select(getYears);
+    this.classes$ = this.store.select(getClasses);
+    this.students$ = this.store.select(getStudents).pipe(
+      take(1),
+      tap((students) => {
+        this.selectedStudent = students[0];
+      })
+    );
+  }
+
+  ngOnInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      this.store.dispatch(new StudentsActions.Fetch());
+    }
   }
 }

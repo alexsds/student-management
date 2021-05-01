@@ -14,6 +14,12 @@
 .ng-select .ng-arrow-wrapper .ng-arrow
   border-color: $white transparent transparent
 
+.ng-select.ng-select-opened>.ng-select-container .ng-arrow
+  border-color: transparent transparent $white
+
+.ng-select .ng-arrow-wrapper:hover .ng-arrow
+  border-top-color: darken($white, 10%)
+
 .ng-select .ng-select-container .ng-value-container .ng-placeholder
   color: $green
   font-style: italic

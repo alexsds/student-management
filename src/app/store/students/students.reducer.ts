@@ -68,11 +68,13 @@ export function studentsReducer(state = initialState, action: StudentsActions.St
     case StudentsActions.SELECT_YEAR:
       return {
         ...state,
+        selectedStudent: undefined,
         selectedYear: action.payload.year,
       };
     case StudentsActions.SELECT_CLASS_TYPE:
       return {
         ...state,
+        selectedStudent: undefined,
         selectedClassType: action.payload.classType,
       };
     case StudentsActions.FETCH_STUDENTS:
@@ -102,17 +104,30 @@ export function studentsReducer(state = initialState, action: StudentsActions.St
         selectedStudent: undefined,
       };
     case StudentsActions.UPDATE_GRADE_SUCCESS:
-      const updatedStudent = action.payload.student;
-      const students = state.students;
+      const updatedStudent: Student = action.payload.student;
+      let students = state.students;
       const foundIndex = students.findIndex(
         (x) => x.fname === updatedStudent.fname && x.lname === updatedStudent.lname
       );
-      if (foundIndex) {
+
+      if (foundIndex !== -1) {
+        students = {...state.students};
         students[foundIndex] = updatedStudent;
       }
+
+      let selectedStudent = state.selectedStudent;
+      if (
+        selectedStudent &&
+        selectedStudent.fname === updatedStudent.fname &&
+        selectedStudent.lname === updatedStudent.lname
+      ) {
+        selectedStudent = students[foundIndex];
+      }
+
       return {
         ...state,
         students,
+        selectedStudent,
       };
     default:
       return {

@@ -2,15 +2,15 @@
   *ngIf="student"
   [class.danger]="useHighlight && student.grade < 45"
   [class.selected]="useHighlight && selected === student"
-  (click)="onSelectStudent(student)"
+  (click)="onSelectStudent($event, student)"
   class="card"
 >
   <div class="card-body">
     <div class="row">
-      <div class="col-2">
+      <div class="col-lg-2">
         <img class="user-image" src="assets/male-user-svgrepo-com.svg" alt="{{ student.fname }}" />
       </div>
-      <div class="col-3">
+      <div class="col-lg-3">
         <div class="property">
           <div class="property__name">Name:</div>
           <div class="property__value">{{ student.fname }}</div>
@@ -20,7 +20,7 @@
           <div class="property__value">{{ student.lname }}</div>
         </div>
       </div>
-      <div class="col-3">
+      <div class="col-lg-3">
         <div class="property">
           <div class="property__name">Class:</div>
           <div class="property__value">Biology</div>
@@ -30,7 +30,7 @@
           <div class="property__value">{{ student.year }}</div>
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-lg-4">
         <div class="property"></div>
         <div class="property">
           <div class="property__name">Score:</div>

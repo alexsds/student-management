@@ -20,7 +20,7 @@ import {GridView} from './core/enum/grid-view.enum';
   styleUrls: ['./app.component.sass'],
 })
 export class AppComponent implements OnInit {
-  title = 'students-managment';
+  title = 'students-management';
 
   years$: Observable<Set<number>>;
   classTypes$: Observable<Set<string>>;

@@ -9,9 +9,10 @@ import {EffectsModule} from '@ngrx/effects';
 import {StudentsService} from './core/service/students.service';
 import {StudentsEffects} from './store/students/students.effects';
 import * as fromApp from './store/app.reducer';
+import {StudentGridComponent} from './components/student-grid/student-grid.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, StudentGridComponent],
   imports: [
     BrowserModule,
     NgSelectModule,

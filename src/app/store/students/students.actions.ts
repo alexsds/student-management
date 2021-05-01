@@ -20,6 +20,8 @@ export const FETCH_STUDENTS = '[Students] Fetch Students';
 export const FETCH_STUDENTS_SUCCESS = '[Students] Fetch Students Success';
 export const FETCH_STUDENTS_FAIL = '[Students] Fetch Students Fail';
 
+export const SELECT_STUDENT = '[Students] Select Student';
+
 export class FetchData implements Action {
   readonly type = FETCH_DATA;
 }
@@ -88,6 +90,12 @@ export class FetchStudentsFail implements Action {
   readonly type = FETCH_STUDENTS_FAIL;
 }
 
+export class SelectStudent implements Action {
+  readonly type = SELECT_STUDENT;
+
+  constructor(public payload: {student: Student}) {}
+}
+
 export type StudentsActions =
   | FetchData
   | FetchDataSuccess
@@ -102,4 +110,5 @@ export type StudentsActions =
   | SelectClassType
   | FetchStudents
   | FetchStudentsSuccess
-  | FetchStudentsFail;
+  | FetchStudentsFail
+  | SelectStudent;

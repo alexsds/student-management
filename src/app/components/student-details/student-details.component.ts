@@ -11,6 +11,7 @@ import * as StudentsActions from '../../store/students/students.actions';
 })
 export class StudentDetailsComponent implements OnInit {
   @Input() student: Student | undefined = undefined;
+  @Input() showCard = true;
 
   constructor(private store: Store<fromApp.State>) {}
 

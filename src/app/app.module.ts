@@ -6,6 +6,7 @@ import {NgSelectModule} from '@ng-select/ng-select';
 import {FormsModule} from '@angular/forms';
 import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
+import {QuillModule} from 'ngx-quill';
 import {StudentsService} from './core/service/students.service';
 import {StudentsEffects} from './store/students/students.effects';
 import * as fromApp from './store/app.reducer';
@@ -21,6 +22,27 @@ import {GridViewComponent} from './components/grid-view/grid-view.component';
     FormsModule,
     StoreModule.forRoot(fromApp.appReducer),
     EffectsModule.forRoot([StudentsEffects]),
+    QuillModule.forRoot({
+      modules: {
+        toolbar: [
+          [
+            'clean',
+            'underline',
+            'italic',
+            'bold',
+            'strike',
+            {align: 'justify'},
+            {align: ''},
+            {align: 'center'},
+            {align: 'right'},
+            {list: 'bullet'},
+            {list: 'ordered'},
+            {indent: '-1'},
+            {indent: '+1'},
+          ],
+        ],
+      },
+    }),
   ],
   providers: [StudentsService],
   bootstrap: [AppComponent],

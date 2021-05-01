@@ -1,6 +1,7 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
-
 import {StudentCardComponent} from './student-card.component';
+import {provideMockStore} from '@ngrx/store/testing';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 describe('StudentCardComponent', () => {
   let component: StudentCardComponent;
@@ -9,6 +10,8 @@ describe('StudentCardComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [StudentCardComponent],
+      providers: [provideMockStore()],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });
 

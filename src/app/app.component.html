@@ -1,4 +1,4 @@
-<div class="mt-5">
+<div class="mt-4">
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
@@ -48,7 +48,10 @@
     </div>
     <div *ngIf="selectedStudent$ | async as selectedStudent" class="row">
       <div class="col-lg-12 mt-4">
-        <app-student-details [student]="selectedStudent"></app-student-details>
+        <app-student-details
+          [student]="selectedStudent"
+          [showCard]="(gridView$ | async) === gridView.LIST"
+        ></app-student-details>
       </div>
     </div>
   </div>

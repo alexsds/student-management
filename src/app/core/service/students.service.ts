@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Student} from '../model/student';
 import {Observable, of} from 'rxjs';
+import {GetStudentsRequest} from '../request/get-students.request';
 
 interface ClassStudents {
   students: Student[];
@@ -20,30 +21,63 @@ export class StudentsService {
     this.data = getData();
   }
 
-  years(): Observable<Set<number>> {
-    const years = new Set<number>();
+  years(selectedClassType?: string): Observable<Set<number>> {
+    const years: number[] = [];
     this.data.classStudents.map((item) => {
+      if (selectedClassType && selectedClassType !== item.classType) {
+        return;
+      }
+
       return item.students.forEach((student) => {
-        years.add(student.year);
+        years.push(student.year);
       });
     });
 
-    return of(years);
+    years.sort();
+
+    return of(new Set<number>(years));
   }
 
-  classes(): Observable<Set<string>> {
-    const classes = new Set<string>();
-    this.data.classTypes.map((classTypes) => {
-      classes.add(classTypes);
+  classTypes(selectedYear?: number): Observable<Set<string>> {
+    const classTypes: string[] = [];
+    this.data.classStudents.map((item) => {
+      if (selectedYear) {
+        const students = item.students.find((student) => {
+          return student.year === selectedYear;
+        });
+        if (!students) {
+          return;
+        }
+      }
+
+      classTypes.sort();
+
+      classTypes.push(item.classType);
     });
 
-    return of(classes);
+    return of(new Set<string>(classTypes));
   }
 
-  get(): Observable<Student[]> {
+  get(request?: GetStudentsRequest): Observable<Student[]> {
+    if (!request?.year && !request?.classType) {
+      return of([]);
+    }
+
     const students: Student[] = [];
     this.data.classStudents.map((item) => {
+      if (request?.classType) {
+        if (item.classType !== request.classType) {
+          return;
+        }
+      }
+
       return item.students.forEach((student) => {
+        if (request?.year) {
+          if (student.year !== request.year) {
+            return;
+          }
+        }
+
         students.push(student);
       });
     });

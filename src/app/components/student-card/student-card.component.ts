@@ -21,4 +21,9 @@ export class StudentCardComponent implements OnInit {
   onSelectStudent(student: Student): void {
     this.store.dispatch(new StudentsActions.SelectStudent({student}));
   }
+
+  onUpdateGrade($event: any, student: Student): void {
+    const grade = $event.target?.value;
+    this.store.dispatch(new StudentsActions.UpdateGrade({student, grade}));
+  }
 }

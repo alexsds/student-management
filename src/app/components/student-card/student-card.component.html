@@ -35,7 +35,7 @@
         <div class="property">
           <div class="property__name">Score:</div>
           <div class="property__input">
-            <input class="form-control" [value]="student.grade" />
+            <input class="form-control" (change)="onUpdateGrade($event, student)" [value]="student.grade" />
           </div>
         </div>
       </div>

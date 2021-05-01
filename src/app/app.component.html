@@ -39,7 +39,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let student of students$ | async; index as i">
+                    <tr *ngFor="let student of students$ | async; index as i" (click)="onSelectStudent(student)">
                       <td>
                         {{ student.fname }}
                       </td>
@@ -58,7 +58,7 @@
         </div>
       </div>
     </div>
-    <div *ngIf="selectedStudent" class="row mt-4">
+    <div *ngIf="selectedStudent$ | async as selectedStudent" class="row mt-4">
       <div class="col-lg-12">
         <div class="card">
           <div class="card-body">

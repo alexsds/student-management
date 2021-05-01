@@ -10,9 +10,11 @@ import {StudentsService} from './core/service/students.service';
 import {StudentsEffects} from './store/students/students.effects';
 import * as fromApp from './store/app.reducer';
 import {StudentGridComponent} from './components/student-grid/student-grid.component';
+import {StudentCardComponent} from './components/student-card/student-card.component';
+import {GridViewComponent} from './components/grid-view/grid-view.component';
 
 @NgModule({
-  declarations: [AppComponent, StudentGridComponent],
+  declarations: [AppComponent, StudentGridComponent, StudentCardComponent, GridViewComponent],
   imports: [
     BrowserModule,
     NgSelectModule,

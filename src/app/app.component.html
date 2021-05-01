@@ -7,11 +7,11 @@
           <div class="card-body">
             <div class="row">
               <div class="col-12">
-                <div class="float-right">view icons</div>
+                <div class="mb-3 float-right">
+                  <app-grid-view></app-grid-view>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-6">
+              <div class="col-lg-5">
                 <div class="row">
                   <div class="col-lg-6">
                     <ng-select (change)="onSelectYear($event)" placeholder="Choose Year">
@@ -21,7 +21,11 @@
                     </ng-select>
                   </div>
                   <div class="col-lg-6">
-                    <ng-select (change)="onSelectClass($event)" placeholder="Choose Class">
+                    <ng-select
+                      (change)="onSelectClass($event)"
+                      placeholder="Choose Class"
+                      [(ngModel)]="selectedClassType"
+                    >
                       <ng-option *ngFor="let classType of classTypes$ | async" [value]="classType">
                         {{ classType }}
                       </ng-option>
@@ -29,8 +33,13 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-6">
-                <app-student-grid [students]="students$ | async"></app-student-grid>
+              <div class="col-lg-7">
+                <app-student-grid
+                  [gridView]="gridView$ | async"
+                  [students]="students$ | async"
+                  [selected]="selectedStudent$ | async"
+                >
+                </app-student-grid>
               </div>
             </div>
           </div>

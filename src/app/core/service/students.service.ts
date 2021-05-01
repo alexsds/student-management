@@ -59,10 +59,6 @@ export class StudentsService {
   }
 
   get(request?: GetStudentsRequest): Observable<Student[]> {
-    if (!request?.year && !request?.classType) {
-      return of([]);
-    }
-
     const students: Student[] = [];
     this.data.classStudents.map((item) => {
       if (request?.classType) {

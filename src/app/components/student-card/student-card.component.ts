@@ -1,23 +1,17 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Student} from '../../core/model/student';
 import * as StudentsActions from '../../store/students/students.actions';
 import {Store} from '@ngrx/store';
 import * as fromApp from '../../store/app.reducer';
-import {GridView} from '../../core/enum/grid-view.enum';
 
 @Component({
-  selector: 'app-student-grid',
-  templateUrl: './student-grid.component.html',
-  styleUrls: ['./student-grid.component.sass'],
+  selector: 'app-student-card',
+  templateUrl: './student-card.component.html',
+  styleUrls: ['./student-card.component.sass'],
 })
-export class StudentGridComponent implements OnInit {
-  @Input() gridView: GridView | null = GridView.CARDS;
-  @Input() students: Student[] | null = [];
+export class StudentCardComponent implements OnInit {
+  @Input() student: Student | undefined = undefined;
   @Input() selected: Student | undefined | null = undefined;
-
-  gridViewEnum = GridView;
-
-  @ViewChild('image') image!: ElementRef;
 
   constructor(private store: Store<fromApp.State>) {}
 

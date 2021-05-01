@@ -1,14 +1,16 @@
 @import '../../../sass/varialbes'
 
-thead
-  background-color: $lightGreen
-
-  th
-    font-weight: initial
+\:host
+  display: block
 
 table
   background-color: $white
   font-weight: bold
+
+thead
+  th
+    font-weight: initial
+    background-color: $lightGreen
 
 tr
   cursor: pointer
@@ -22,3 +24,10 @@ tr
 td
   &:last-child
     text-align: center
+
+object
+  fill: $lightGreen
+
+.grid-container
+  max-height: 260px
+  overflow: scroll

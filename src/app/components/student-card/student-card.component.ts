@@ -18,7 +18,11 @@ export class StudentCardComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onSelectStudent(student: Student): void {
+  onSelectStudent(event: any, student: Student): void {
+    if (event.target.nodeName === 'INPUT') {
+      return;
+    }
+
     this.store.dispatch(new StudentsActions.SelectStudent({student}));
   }
 

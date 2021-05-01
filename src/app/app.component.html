@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-lg-12">
         <div class="card">
-          <div class="card-header">Students mangment</div>
+          <div class="card-header">Students management</div>
           <div class="card-body">
             <div class="row">
               <div class="col-12">
@@ -12,8 +12,8 @@
                 </div>
               </div>
               <div class="col-lg-5">
-                <div class="row">
-                  <div class="col-lg-6">
+                <div class="row mb-3">
+                  <div class="col-lg-6 mb-3">
                     <ng-select (change)="onSelectYear($event)" placeholder="Choose Year">
                       <ng-option *ngFor="let year of years$ | async" [value]="year">
                         {{ year }}

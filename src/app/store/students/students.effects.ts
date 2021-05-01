@@ -58,7 +58,12 @@ export class StudentsEffects {
 
   fetchStudents$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(StudentsActions.FETCH_STUDENTS, StudentsActions.SELECT_YEAR, StudentsActions.SELECT_CLASS_TYPE),
+      ofType(
+        StudentsActions.FETCH_STUDENTS,
+        StudentsActions.SELECT_YEAR,
+        StudentsActions.SELECT_CLASS_TYPE,
+        StudentsActions.UPDATE_GRADE_SUCCESS
+      ),
       withLatestFrom(this.store.select(getSelectedYear), this.store.select(getSelectedClassType)),
       switchMap(([, selectedYear, selectedClassType]) => {
         return this.dataService.getStudents({year: selectedYear, classType: selectedClassType}).pipe(

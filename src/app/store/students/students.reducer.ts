@@ -93,6 +93,7 @@ export function studentsReducer(state = initialState, action: StudentsActions.St
     case StudentsActions.SELECT_GRID_VIEW:
       return {
         ...state,
+        selectedStudent: undefined,
         gridView: action.payload.gridView,
       };
     default:

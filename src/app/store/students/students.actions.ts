@@ -1,5 +1,6 @@
 import {Action} from '@ngrx/store';
 import {Student} from '../../core/model/student';
+import {GridView} from '../../core/enum/grid-view.enum';
 
 export const FETCH_DATA = '[Students] Fetch Data';
 export const FETCH_DATA_SUCCESS = '[Students] Fetch Data Success';
@@ -21,6 +22,8 @@ export const FETCH_STUDENTS_SUCCESS = '[Students] Fetch Students Success';
 export const FETCH_STUDENTS_FAIL = '[Students] Fetch Students Fail';
 
 export const SELECT_STUDENT = '[Students] Select Student';
+
+export const SELECT_GRID_VIEW = '[Students] Select Grid View';
 
 export class FetchData implements Action {
   readonly type = FETCH_DATA;
@@ -96,6 +99,12 @@ export class SelectStudent implements Action {
   constructor(public payload: {student: Student}) {}
 }
 
+export class SelectGridView implements Action {
+  readonly type = SELECT_GRID_VIEW;
+
+  constructor(public payload: {gridView: GridView}) {}
+}
+
 export type StudentsActions =
   | FetchData
   | FetchDataSuccess
@@ -111,4 +120,5 @@ export type StudentsActions =
   | FetchStudents
   | FetchStudentsSuccess
   | FetchStudentsFail
-  | SelectStudent;
+  | SelectStudent
+  | SelectGridView;

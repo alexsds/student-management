@@ -1,5 +1,6 @@
 import * as StudentsActions from './students.actions';
 import {Student} from '../../core/model/student';
+import {GridView} from '../../core/enum/grid-view.enum';
 
 export interface State {
   years: Set<number>;
@@ -8,6 +9,7 @@ export interface State {
   selectedClassType: string | undefined;
   students: Student[];
   selectedStudent: Student | undefined;
+  gridView: GridView;
   loaded: boolean;
 }
 
@@ -18,6 +20,7 @@ const initialState: State = {
   selectedClassType: undefined,
   students: [],
   selectedStudent: undefined,
+  gridView: GridView.LIST,
   loaded: false,
 };
 
@@ -86,6 +89,11 @@ export function studentsReducer(state = initialState, action: StudentsActions.St
       return {
         ...state,
         selectedStudent: action.payload.student,
+      };
+    case StudentsActions.SELECT_GRID_VIEW:
+      return {
+        ...state,
+        gridView: action.payload.gridView,
       };
     default:
       return {

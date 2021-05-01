@@ -40,8 +40,4 @@ export class AppComponent implements OnInit {
   onSelectClass(classType: string): void {
     this.store.dispatch(new StudentsActions.SelectClassType({classType}));
   }
-
-  onSelectStudent(student: Student): void {
-    this.store.dispatch(new StudentsActions.SelectStudent({student}));
-  }
 }

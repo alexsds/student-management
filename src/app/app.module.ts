@@ -7,7 +7,7 @@ import {FormsModule} from '@angular/forms';
 import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
 import {QuillModule} from 'ngx-quill';
-import {StudentsService} from './core/service/students.service';
+import {DataService} from './core/service/data.service';
 import {StudentsEffects} from './store/students/students.effects';
 import * as fromApp from './store/app.reducer';
 import {StudentGridComponent} from './components/student-grid/student-grid.component';
@@ -45,7 +45,7 @@ import {StudentDetailsComponent} from './components/student-details/student-deta
       },
     }),
   ],
-  providers: [StudentsService],
+  providers: [DataService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

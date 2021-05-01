@@ -101,6 +101,19 @@ export function studentsReducer(state = initialState, action: StudentsActions.St
         ...state,
         selectedStudent: undefined,
       };
+    case StudentsActions.UPDATE_GRADE_SUCCESS:
+      const updatedStudent = action.payload.student;
+      const students = state.students;
+      const foundIndex = students.findIndex(
+        (x) => x.fname === updatedStudent.fname && x.lname === updatedStudent.lname
+      );
+      if (foundIndex) {
+        students[foundIndex] = updatedStudent;
+      }
+      return {
+        ...state,
+        students,
+      };
     default:
       return {
         ...state,

@@ -28,6 +28,7 @@ export class AppComponent implements OnInit {
   selectedStudent$: Observable<Student | undefined>;
   selectedClassType!: string;
   gridView$: Observable<GridView>;
+  gridView = GridView;
 
   constructor(private store: Store<fromApp.State>, @Inject(PLATFORM_ID) private platformId: object) {
     this.years$ = this.store.select(getYears);

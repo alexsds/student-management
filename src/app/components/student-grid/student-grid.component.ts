@@ -11,7 +11,7 @@ import {GridView} from '../../core/enum/grid-view.enum';
   styleUrls: ['./student-grid.component.sass'],
 })
 export class StudentGridComponent implements OnInit {
-  @Input() gridView: GridView | null = GridView.CARDS;
+  @Input() gridView: GridView | null = GridView.LIST;
   @Input() students: Student[] | null = [];
   @Input() selected: Student | undefined | null = undefined;
 

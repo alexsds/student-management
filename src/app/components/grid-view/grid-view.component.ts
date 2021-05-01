@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import * as fromApp from '../../store/app.reducer';
 import * as StudentsActions from '../../store/students/students.actions';
@@ -10,15 +10,21 @@ import {GridView} from '../../core/enum/grid-view.enum';
   styleUrls: ['./grid-view.component.sass'],
 })
 export class GridViewComponent implements OnInit {
+  @Input() activeGridView: GridView | null = GridView.LIST;
+
   constructor(private store: Store<fromApp.State>) {}
 
   ngOnInit(): void {}
 
   onSelectCardsGridView(): void {
-    this.store.dispatch(new StudentsActions.SelectGridView({gridView: GridView.CARDS}));
+    if (this.activeGridView !== GridView.CARDS) {
+      this.store.dispatch(new StudentsActions.SelectGridView({gridView: GridView.CARDS}));
+    }
   }
 
   onSelectListGridView(): void {
-    this.store.dispatch(new StudentsActions.SelectGridView({gridView: GridView.LIST}));
+    if (this.activeGridView !== GridView.LIST) {
+      this.store.dispatch(new StudentsActions.SelectGridView({gridView: GridView.LIST}));
+    }
   }
 }

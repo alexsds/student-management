@@ -96,6 +96,11 @@ export function studentsReducer(state = initialState, action: StudentsActions.St
         selectedStudent: undefined,
         gridView: action.payload.gridView,
       };
+    case StudentsActions.SUBMIT_FORM:
+      return {
+        ...state,
+        selectedStudent: undefined,
+      };
     default:
       return {
         ...state,

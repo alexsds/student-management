@@ -30,28 +30,7 @@
                 </div>
               </div>
               <div class="col-lg-6">
-                <table class="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th scope="col">Name</th>
-                      <th scope="col">S.Name</th>
-                      <th scope="col">Score</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let student of students$ | async; index as i" (click)="onSelectStudent(student)">
-                      <td>
-                        {{ student.fname }}
-                      </td>
-                      <td>
-                        {{ student.lname }}
-                      </td>
-                      <td>
-                        {{ student.grade }}
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                <app-student-grid [students]="students$ | async"></app-student-grid>
               </div>
             </div>
           </div>

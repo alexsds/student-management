@@ -1,0 +1,27 @@
+<table *ngIf="students && students.length > 0" class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">S.Name</th>
+      <th scope="col">Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="let student of students; index as i"
+      [class.danger]="student.grade < 45"
+      [class.selected]="(selectedStudent$ | async) === student"
+      (click)="onSelectStudent(student)"
+    >
+      <td>
+        {{ student.fname }}
+      </td>
+      <td>
+        {{ student.lname }}
+      </td>
+      <td>
+        {{ student.grade }}
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -83,7 +83,7 @@ export class DataService {
 
   updateStudentGrade(student: Student, grade: number): Observable<Student> {
     const updatedStudent = {...student};
-    updatedStudent.grade = Number(grade);
+    updatedStudent.grade = parseFloat(String(grade));
     this.data.classStudents.map((item) => {
       const foundIndex = item.students.indexOf(student);
       if (foundIndex !== -1) {

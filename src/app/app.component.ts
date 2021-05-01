@@ -4,9 +4,8 @@ import {Store} from '@ngrx/store';
 import * as fromApp from './store/app.reducer';
 import * as StudentsActions from './store/students/students.actions';
 import {isPlatformBrowser} from '@angular/common';
-import {getClassTypes, getStudents, getYears} from './store/students/students.selectors';
+import {getClassTypes, getSelectedStudent, getStudents, getYears} from './store/students/students.selectors';
 import {Observable} from 'rxjs';
-import {delay, take, tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -19,12 +18,13 @@ export class AppComponent implements OnInit {
   years$: Observable<Set<number>>;
   classTypes$: Observable<Set<string>>;
   students$: Observable<Student[]>;
-  selectedStudent!: Student;
+  selectedStudent$: Observable<Student | undefined>;
 
   constructor(private store: Store<fromApp.State>, @Inject(PLATFORM_ID) private platformId: object) {
     this.years$ = this.store.select(getYears);
     this.classTypes$ = this.store.select(getClassTypes);
     this.students$ = this.store.select(getStudents);
+    this.selectedStudent$ = this.store.select(getSelectedStudent);
   }
 
   ngOnInit(): void {
@@ -39,5 +39,9 @@ export class AppComponent implements OnInit {
 
   onSelectClass(classType: string): void {
     this.store.dispatch(new StudentsActions.SelectClassType({classType}));
+  }
+
+  onSelectStudent(student: Student): void {
+    this.store.dispatch(new StudentsActions.SelectStudent({student}));
   }
 }

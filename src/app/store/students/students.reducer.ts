@@ -7,6 +7,7 @@ export interface State {
   classTypes: Set<string>;
   selectedClassType: string | undefined;
   students: Student[];
+  selectedStudent: Student | undefined;
   loaded: boolean;
 }
 
@@ -16,6 +17,7 @@ const initialState: State = {
   classTypes: new Set<string>(),
   selectedClassType: undefined,
   students: [],
+  selectedStudent: undefined,
   loaded: false,
 };
 
@@ -79,6 +81,11 @@ export function studentsReducer(state = initialState, action: StudentsActions.St
       return {
         ...state,
         students: action.payload.students,
+      };
+    case StudentsActions.SELECT_STUDENT:
+      return {
+        ...state,
+        selectedStudent: action.payload.student,
       };
     default:
       return {

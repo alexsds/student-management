@@ -14,16 +14,16 @@
               <div class="col-lg-6">
                 <div class="row">
                   <div class="col-lg-6">
-                    <ng-select placeholder="Choose Year">
+                    <ng-select (change)="onSelectYear($event)" placeholder="Choose Year">
                       <ng-option *ngFor="let year of years$ | async" [value]="year">
                         {{ year }}
                       </ng-option>
                     </ng-select>
                   </div>
                   <div class="col-lg-6">
-                    <ng-select placeholder="Choose Class">
-                      <ng-option *ngFor="let className of classes$ | async" [value]="className">
-                        {{ className }}
+                    <ng-select (change)="onSelectClass($event)" placeholder="Choose Class">
+                      <ng-option *ngFor="let classType of classTypes$ | async" [value]="classType">
+                        {{ classType }}
                       </ng-option>
                     </ng-select>
                   </div>
@@ -58,7 +58,7 @@
         </div>
       </div>
     </div>
-    <div class="row mt-4">
+    <div *ngIf="selectedStudent" class="row mt-4">
       <div class="col-lg-12">
         <div class="card">
           <div class="card-body">

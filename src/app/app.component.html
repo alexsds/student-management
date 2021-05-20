@@ -1,43 +1,45 @@
 <div class="mt-4">
-  <div class="container">
+  <div class="container mb-3">
     <div class="row">
       <div class="col-lg-12">
         <div class="card">
-          <div class="card-header" id="main">Students management</div>
+          <div class="card-header">Students management</div>
           <div class="card-body">
             <div class="row">
               <div class="col-12">
                 <div class="mb-3 float-right">
-                  <app-grid-view [activeGridView]="gridView$ | async"></app-grid-view>
+                  <app-grid-view [activeGridView]="gridViewStore.view"></app-grid-view>
                 </div>
               </div>
               <div class="col-lg-5">
                 <div class="row mb-3">
                   <div class="col-lg-6 mb-3">
-                    <ng-select (change)="onSelectYear($event)" placeholder="Choose Year">
-                      <ng-option *ngFor="let year of years$ | async" [value]="year">
-                        {{ year }}
-                      </ng-option>
+                    <ng-select
+                      [items]="filtersStore.years"
+                      (change)="onSelectYear($event)"
+                      placeholder="Choose Year"
+                      [ngModel]="filtersStore.selectedYear"
+                      [ngModelOptions]="{standalone: true}"
+                    >
                     </ng-select>
                   </div>
                   <div class="col-lg-6">
                     <ng-select
-                      (change)="onSelectClass($event)"
+                      [items]="filtersStore.classTypes"
+                      (change)="onSelectClassType($event)"
                       placeholder="Choose Class"
-                      [(ngModel)]="selectedClassType"
+                      [ngModel]="filtersStore.selectedClassType"
+                      [ngModelOptions]="{standalone: true}"
                     >
-                      <ng-option *ngFor="let classType of classTypes$ | async" [value]="classType">
-                        {{ classType }}
-                      </ng-option>
                     </ng-select>
                   </div>
                 </div>
               </div>
               <div class="col-lg-7">
                 <app-student-grid
-                  [gridView]="gridView$ | async"
-                  [students]="students$ | async"
-                  [selected]="selectedStudent$ | async"
+                  [gridView]="gridViewStore.view"
+                  [students]="studentsStore.filteredStudents"
+                  [selected]="studentsStore.selected"
                 >
                 </app-student-grid>
               </div>
@@ -46,11 +48,11 @@
         </div>
       </div>
     </div>
-    <div *ngIf="selectedStudent$ | async as selectedStudent" class="row">
+    <div *ngIf="studentsStore.selected as selectedStudent" class="row">
       <div class="col-lg-12 mt-4">
         <app-student-details
           [student]="selectedStudent"
-          [showCard]="(gridView$ | async) === gridView.LIST"
+          [showCard]="gridViewStore.view === gridView.LIST"
         ></app-student-details>
       </div>
     </div>

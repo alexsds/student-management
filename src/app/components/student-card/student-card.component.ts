@@ -1,20 +1,19 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {Student} from '../../core/model/student';
-import * as StudentsActions from '../../store/students/students.actions';
-import {Store} from '@ngrx/store';
-import * as fromApp from '../../store/app.reducer';
+import {StudentsStore} from '../../mobx-store/students.store';
 
 @Component({
   selector: 'app-student-card',
   templateUrl: './student-card.component.html',
   styleUrls: ['./student-card.component.sass'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StudentCardComponent implements OnInit {
   @Input() student: Student | undefined = undefined;
   @Input() selected: Student | undefined | null = undefined;
   @Input() useHighlight = true;
 
-  constructor(private store: Store<fromApp.State>) {}
+  constructor(private studentsStore: StudentsStore) {}
 
   ngOnInit(): void {}
 
@@ -23,11 +22,11 @@ export class StudentCardComponent implements OnInit {
       return;
     }
 
-    this.store.dispatch(new StudentsActions.SelectStudent({student}));
+    this.studentsStore.selectStudent(student);
   }
 
   onUpdateGrade($event: any, student: Student): void {
     const grade = $event.target?.value;
-    this.store.dispatch(new StudentsActions.UpdateGrade({student, grade}));
+    this.studentsStore.updateGrade(student, grade);
   }
 }

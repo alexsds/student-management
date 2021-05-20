@@ -14,6 +14,10 @@ import {StudentGridComponent} from './components/student-grid/student-grid.compo
 import {StudentCardComponent} from './components/student-card/student-card.component';
 import {GridViewComponent} from './components/grid-view/grid-view.component';
 import {StudentDetailsComponent} from './components/student-details/student-details.component';
+import {MobxAngularModule} from 'mobx-angular';
+import {StudentsStore} from './mobx-store/students.store';
+import {FiltersStore} from './mobx-store/filters.store';
+import {GridViewStore} from './mobx-store/grid-view.store';
 
 @NgModule({
   declarations: [AppComponent, StudentGridComponent, StudentCardComponent, GridViewComponent, StudentDetailsComponent],
@@ -21,6 +25,7 @@ import {StudentDetailsComponent} from './components/student-details/student-deta
     BrowserModule,
     NgSelectModule,
     FormsModule,
+    MobxAngularModule,
     StoreModule.forRoot(fromApp.appReducer),
     EffectsModule.forRoot([StudentsEffects]),
     QuillModule.forRoot({
@@ -45,7 +50,7 @@ import {StudentDetailsComponent} from './components/student-details/student-deta
       },
     }),
   ],
-  providers: [DataService],
+  providers: [DataService, StudentsStore, FiltersStore, GridViewStore],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

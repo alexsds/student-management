@@ -74,6 +74,7 @@ export class DataService {
           }
         }
 
+        student.classType = item.classType;
         students.push(student);
       });
     });

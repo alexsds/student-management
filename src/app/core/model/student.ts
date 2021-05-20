@@ -3,4 +3,5 @@ export interface Student {
   lname: string;
   grade: number;
   year: number;
+  classType?: string;
 }

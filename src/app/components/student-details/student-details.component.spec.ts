@@ -1,7 +1,9 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {StudentDetailsComponent} from './student-details.component';
-import {provideMockStore} from '@ngrx/store/testing';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {StudentsStore} from '../../mobx-store/students.store';
+import {DataService} from '../../core/service/data.service';
+import {FiltersStore} from '../../mobx-store/filters.store';
 
 describe('StudentDetailsComponent', () => {
   let component: StudentDetailsComponent;
@@ -10,7 +12,7 @@ describe('StudentDetailsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [StudentDetailsComponent],
-      providers: [provideMockStore()],
+      providers: [DataService, FiltersStore, StudentsStore],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });

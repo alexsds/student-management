@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {GridView} from '../../core/enum/grid-view.enum';
-import {GridViewStore} from '../../mobx-store/grid-view.store';
-import {StudentsStore} from '../../mobx-store/students.store';
+import {GridViewStore} from '../../stores/grid-view.store';
+import {StudentsStore} from '../../stores/students.store';
 
 @Component({
   selector: 'app-grid-view',

@@ -4,20 +4,16 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppComponent} from './app.component';
 import {NgSelectModule} from '@ng-select/ng-select';
 import {FormsModule} from '@angular/forms';
-import {StoreModule} from '@ngrx/store';
-import {EffectsModule} from '@ngrx/effects';
 import {QuillModule} from 'ngx-quill';
 import {DataService} from './core/service/data.service';
-import {StudentsEffects} from './store/students/students.effects';
-import * as fromApp from './store/app.reducer';
 import {StudentGridComponent} from './components/student-grid/student-grid.component';
 import {StudentCardComponent} from './components/student-card/student-card.component';
 import {GridViewComponent} from './components/grid-view/grid-view.component';
 import {StudentDetailsComponent} from './components/student-details/student-details.component';
 import {MobxAngularModule} from 'mobx-angular';
-import {StudentsStore} from './mobx-store/students.store';
-import {FiltersStore} from './mobx-store/filters.store';
-import {GridViewStore} from './mobx-store/grid-view.store';
+import {StudentsStore} from './stores/students.store';
+import {FiltersStore} from './stores/filters.store';
+import {GridViewStore} from './stores/grid-view.store';
 
 @NgModule({
   declarations: [AppComponent, StudentGridComponent, StudentCardComponent, GridViewComponent, StudentDetailsComponent],
@@ -26,8 +22,6 @@ import {GridViewStore} from './mobx-store/grid-view.store';
     NgSelectModule,
     FormsModule,
     MobxAngularModule,
-    StoreModule.forRoot(fromApp.appReducer),
-    EffectsModule.forRoot([StudentsEffects]),
     QuillModule.forRoot({
       modules: {
         toolbar: [

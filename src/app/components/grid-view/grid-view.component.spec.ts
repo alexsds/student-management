@@ -1,10 +1,10 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {GridViewComponent} from './grid-view.component';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
-import {GridViewStore} from '../../mobx-store/grid-view.store';
-import {StudentsStore} from '../../mobx-store/students.store';
+import {GridViewStore} from '../../stores/grid-view.store';
+import {StudentsStore} from '../../stores/students.store';
 import {DataService} from '../../core/service/data.service';
-import {FiltersStore} from '../../mobx-store/filters.store';
+import {FiltersStore} from '../../stores/filters.store';
 
 describe('GridViewComponent', () => {
   let component: GridViewComponent;

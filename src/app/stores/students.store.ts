@@ -27,6 +27,7 @@ export class StudentsStore {
     if (this.filtersStore.selectedClassType) {
       students = students.filter((student) => student.classType === this.filtersStore.selectedClassType);
     }
+    console.log('students', students);
 
     return students;
   }

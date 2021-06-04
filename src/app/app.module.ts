@@ -14,9 +14,10 @@ import {MobxAngularModule} from 'mobx-angular';
 import {StudentsStore} from './stores/students.store';
 import {FiltersStore} from './stores/filters.store';
 import {GridViewStore} from './stores/grid-view.store';
+import { StudentManagementComponent } from './components/student-management/student-management.component';
 
 @NgModule({
-  declarations: [AppComponent, StudentGridComponent, StudentCardComponent, GridViewComponent, StudentDetailsComponent],
+  declarations: [AppComponent, StudentGridComponent, StudentCardComponent, GridViewComponent, StudentDetailsComponent, StudentManagementComponent],
   imports: [
     BrowserModule,
     NgSelectModule,
